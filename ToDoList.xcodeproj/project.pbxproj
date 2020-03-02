@@ -58,16 +58,72 @@
 		F2760BE4240BFB3600254DE4 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				F2C1BB2A240CE70F00046492 /* Model */,
+				F2C1BB2B240CE8FB00046492 /* View */,
+				F2C1BB2E240CE9F100046492 /* Business */,
+				F2C1BB32240D2D2200046492 /* Service */,
 				F2760BE5240BFB3600254DE4 /* AppDelegate.swift */,
 				F2760BE7240BFB3600254DE4 /* SceneDelegate.swift */,
-				F2760BE9240BFB3600254DE4 /* ViewController.swift */,
-				F2760BEB240BFB3600254DE4 /* Main.storyboard */,
 				F2760BF1240BFB3B00254DE4 /* Assets.xcassets */,
 				F2760BF3240BFB3B00254DE4 /* LaunchScreen.storyboard */,
 				F2760BF6240BFB3B00254DE4 /* Info.plist */,
-				F2760BEE240BFB3600254DE4 /* ToDoList.xcdatamodeld */,
 			);
 			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		F2C1BB2A240CE70F00046492 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2760BEE240BFB3600254DE4 /* ToDoList.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F2C1BB2B240CE8FB00046492 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2C1BB2D240CE93000046492 /* ViewController */,
+				F2C1BB2C240CE92400046492 /* Storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F2C1BB2C240CE92400046492 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F2760BEB240BFB3600254DE4 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		F2C1BB2D240CE93000046492 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2760BE9240BFB3600254DE4 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F2C1BB2E240CE9F100046492 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				F2C1BB31240D2CFE00046492 /* ViewModel */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		F2C1BB31240D2CFE00046492 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F2C1BB32240D2D2200046492 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
