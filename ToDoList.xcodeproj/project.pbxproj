@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2196F6E240E657700997534 /* TaskServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2196F6D240E657700997534 /* TaskServiceType.swift */; };
+		F2196F70240E6E7300997534 /* DayServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2196F6F240E6E7300997534 /* DayServiceType.swift */; };
 		F2760BE6240BFB3600254DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE5240BFB3600254DE4 /* AppDelegate.swift */; };
 		F2760BE8240BFB3600254DE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE7240BFB3600254DE4 /* SceneDelegate.swift */; };
 		F2760BEA240BFB3600254DE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE9240BFB3600254DE4 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2196F6D240E657700997534 /* TaskServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskServiceType.swift; sourceTree = "<group>"; };
+		F2196F6F240E6E7300997534 /* DayServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayServiceType.swift; sourceTree = "<group>"; };
 		F2760BE2240BFB3600254DE4 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2760BE5240BFB3600254DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2760BE7240BFB3600254DE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		F2C1BB32240D2D2200046492 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F2196F6D240E657700997534 /* TaskServiceType.swift */,
+				F2196F6F240E6E7300997534 /* DayServiceType.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -197,7 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2196F6E240E657700997534 /* TaskServiceType.swift in Sources */,
 				F2760BEA240BFB3600254DE4 /* ViewController.swift in Sources */,
+				F2196F70240E6E7300997534 /* DayServiceType.swift in Sources */,
 				F2760BE6240BFB3600254DE4 /* AppDelegate.swift in Sources */,
 				F2760BE8240BFB3600254DE4 /* SceneDelegate.swift in Sources */,
 				F2760BF0240BFB3600254DE4 /* ToDoList.xcdatamodeld in Sources */,
