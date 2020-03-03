@@ -9,6 +9,8 @@
 import Foundation
 
 protocol DayServiceType {
-    func add(date: Date)
-    func delete(date: Date)
+    func add(day: Day)
+    func update(day: Day, goalTime: Int)
+    func delete(day: Day)
+    func progress(day: Day) -> Int
 }
