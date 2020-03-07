@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 struct DayService: DayServiceType {
-    
+        
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -42,16 +42,18 @@ struct DayService: DayServiceType {
     }
     
     func update(day: Day, goalTime: Int) {
-        <#code#>
+        day.goalTime = Int16(goalTime)
+        self.appDelegate.saveContext()
     }
     
     func delete(day: Day) {
-        <#code#>
+        self.context.delete(day)
+        self.appDelegate.saveContext()
     }
     
-    func progress(day: Day) -> Int {
-        <#code#>
+    func days() -> NSFetchedResultsController<Day> {
+        let fetcheRequest: NSFetchRequest<Day> = Day.fetchRequest()
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetcheRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
+        return fetchedResultsController
     }
-    
-    
 }
