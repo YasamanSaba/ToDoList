@@ -20,10 +20,10 @@ enum TaskServiceError: Error {
 
 protocol TaskServiceType {
     func create(task: Task) throws
-    func edit(task: Task, title: String?, desc: String?, duration: Int?) throws
-    func delete(task: Task) throws
-    func start(task: Task) throws
+    func edit(task: Task, title: String?, desc: String?, duration: Int?)
+    func delete(task: Task)
+    func start(task: Task)
     func pause(task: Task) throws
-    func finish(task: Task) throws
-    func reset(task: Task) throws
+    func finish(task: Task)
+    func reset(task: Task)
 }

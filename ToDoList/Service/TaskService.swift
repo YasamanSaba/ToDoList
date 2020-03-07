@@ -34,8 +34,8 @@ struct TaskService: TaskServiceType {
         tempTask.passedTime = 0
         self.appDelegate.saveContext()
     }
-    
-    func edit(task: Task, title: String?, desc: String?, duration: Int?) throws {
+
+    func edit(task: Task, title: String?, desc: String?, duration: Int?) {
         if let title = title {
             task.title = title
         }
@@ -48,12 +48,12 @@ struct TaskService: TaskServiceType {
         self.appDelegate.saveContext()
     }
     
-    func delete(task: Task) throws {
+    func delete(task: Task) {
         self.context.delete(task)
         self.appDelegate.saveContext()
     }
     
-    func start(task: Task) throws {
+    func start(task: Task) {
         task.lastStart = Date()
         task.stateEnum = .inProgress
         self.appDelegate.saveContext()
@@ -73,13 +73,13 @@ struct TaskService: TaskServiceType {
         self.appDelegate.saveContext()
     }
     
-    func finish(task: Task) throws {
+    func finish(task: Task) {
         task.stateEnum = .finished
         task.passedTime = task.duration
         self.appDelegate.saveContext()
     }
     
-    func reset(task: Task) throws {
+    func reset(task: Task) {
         task.lastStart = nil
         task.passedTime = 0
         task.stateEnum = .initiated

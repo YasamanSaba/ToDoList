@@ -8,8 +8,13 @@
 
 import Foundation
 
+enum DayServiceError: Error {
+    case addFailed
+    case dayAlreadyExist
+}
+
 protocol DayServiceType {
-    func add(day: Day)
+    func add(day: Day) throws
     func update(day: Day, goalTime: Int)
     func delete(day: Day)
     func progress(day: Day) -> Int

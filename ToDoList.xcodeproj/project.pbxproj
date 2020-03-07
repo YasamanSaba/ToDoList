@@ -13,6 +13,9 @@
 		F2196F74240E7F8600997534 /* TaskState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2196F73240E7F8600997534 /* TaskState.swift */; };
 		F2196F7F240E8CDF00997534 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2196F7D240E8CDF00997534 /* Task+CoreDataClass.swift */; };
 		F2196F80240E8CDF00997534 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2196F7E240E8CDF00997534 /* Task+CoreDataProperties.swift */; };
+		F235AED524137AFD00B4D08C /* DayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235AED424137AFD00B4D08C /* DayService.swift */; };
+		F235AED82413940500B4D08C /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235AED62413940500B4D08C /* Day+CoreDataClass.swift */; };
+		F235AED92413940500B4D08C /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235AED72413940500B4D08C /* Day+CoreDataProperties.swift */; };
 		F2760BE6240BFB3600254DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE5240BFB3600254DE4 /* AppDelegate.swift */; };
 		F2760BE8240BFB3600254DE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE7240BFB3600254DE4 /* SceneDelegate.swift */; };
 		F2760BEA240BFB3600254DE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2760BE9240BFB3600254DE4 /* ViewController.swift */; };
@@ -29,6 +32,9 @@
 		F2196F73240E7F8600997534 /* TaskState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskState.swift; sourceTree = "<group>"; };
 		F2196F7D240E8CDF00997534 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2196F7E240E8CDF00997534 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F235AED424137AFD00B4D08C /* DayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayService.swift; sourceTree = "<group>"; };
+		F235AED62413940500B4D08C /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F235AED72413940500B4D08C /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2760BE2240BFB3600254DE4 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2760BE5240BFB3600254DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2760BE7240BFB3600254DE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 		F2C1BB2A240CE70F00046492 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F235AED62413940500B4D08C /* Day+CoreDataClass.swift */,
+				F235AED72413940500B4D08C /* Day+CoreDataProperties.swift */,
 				F2196F7D240E8CDF00997534 /* Task+CoreDataClass.swift */,
 				F2196F7E240E8CDF00997534 /* Task+CoreDataProperties.swift */,
 				F2760BEE240BFB3600254DE4 /* ToDoList.xcdatamodeld */,
@@ -140,6 +148,7 @@
 				F2196F6D240E657700997534 /* TaskServiceType.swift */,
 				F2196F6F240E6E7300997534 /* DayServiceType.swift */,
 				F2196F71240E710400997534 /* TaskService.swift */,
+				F235AED424137AFD00B4D08C /* DayService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -215,9 +224,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F235AED82413940500B4D08C /* Day+CoreDataClass.swift in Sources */,
 				F2196F6E240E657700997534 /* TaskServiceType.swift in Sources */,
 				F2196F7F240E8CDF00997534 /* Task+CoreDataClass.swift in Sources */,
 				F2760BEA240BFB3600254DE4 /* ViewController.swift in Sources */,
+				F235AED524137AFD00B4D08C /* DayService.swift in Sources */,
+				F235AED92413940500B4D08C /* Day+CoreDataProperties.swift in Sources */,
 				F2196F74240E7F8600997534 /* TaskState.swift in Sources */,
 				F2196F70240E6E7300997534 /* DayServiceType.swift in Sources */,
 				F2196F72240E710400997534 /* TaskService.swift in Sources */,
