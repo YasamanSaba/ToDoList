@@ -9,12 +9,37 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
     }
 
 
 }
 
+
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        let task = Task(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+        task.title = "Do Sport"
+        task.duration = 142
+        task.stateEnum = .initiated
+        task.passedTime = 70
+        task.desc = "dfgjhadjfhiahfigailgfliageiorgygeahgljkvlhgfkuygaifhglasdgfukgsLIGdfgjhadjfhiahfigailgfliageiorgygeahgljkvlhgfkuygaifhglasdgfukgsLIG"
+        cell.configure(task: task)
+        return cell
+    }
+    
+    
+}

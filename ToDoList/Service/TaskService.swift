@@ -13,7 +13,7 @@ struct TaskService: TaskServiceType {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func create(task: Task) throws {
+    func create(task: Task, day: Day) throws {
         let request = NSFetchRequest<NSNumber>(entityName: "Task")
         request.resultType = .countResultType
         var count = 0
@@ -32,6 +32,7 @@ struct TaskService: TaskServiceType {
         tempTask.stateEnum = .initiated
         tempTask.duration = task.duration
         tempTask.passedTime = 0
+        tempTask.day = day
         self.appDelegate.saveContext()
     }
 

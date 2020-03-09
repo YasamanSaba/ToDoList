@@ -23,6 +23,7 @@
 		F2760BF0240BFB3600254DE4 /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2760BEE240BFB3600254DE4 /* ToDoList.xcdatamodeld */; };
 		F2760BF2240BFB3B00254DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2760BF1240BFB3B00254DE4 /* Assets.xcassets */; };
 		F2760BF5240BFB3B00254DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2760BF3240BFB3B00254DE4 /* LaunchScreen.storyboard */; };
+		F2D333552415664E00A5ACFE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D333542415664E00A5ACFE /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		F2760BF1240BFB3B00254DE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2760BF4240BFB3B00254DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2760BF6240BFB3B00254DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2D333542415664E00A5ACFE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F20925742416121C0003F08E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F2D333542415664E00A5ACFE /* TableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		F2760BD9240BFB3600254DE4 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 		F2C1BB2B240CE8FB00046492 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F20925742416121C0003F08E /* Cell */,
 				F2C1BB2D240CE93000046492 /* ViewController */,
 				F2C1BB2C240CE92400046492 /* Storyboard */,
 			);
@@ -229,6 +240,7 @@
 				F2196F7F240E8CDF00997534 /* Task+CoreDataClass.swift in Sources */,
 				F2760BEA240BFB3600254DE4 /* ViewController.swift in Sources */,
 				F235AED524137AFD00B4D08C /* DayService.swift in Sources */,
+				F2D333552415664E00A5ACFE /* TableViewCell.swift in Sources */,
 				F235AED92413940500B4D08C /* Day+CoreDataProperties.swift in Sources */,
 				F2196F74240E7F8600997534 /* TaskState.swift in Sources */,
 				F2196F70240E6E7300997534 /* DayServiceType.swift in Sources */,

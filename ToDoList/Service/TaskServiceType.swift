@@ -19,7 +19,7 @@ enum TaskServiceError: Error {
 }
 
 protocol TaskServiceType {
-    func create(task: Task) throws
+    func create(task: Task, day: Day) throws
     func edit(task: Task, title: String?, desc: String?, duration: Int?)
     func delete(task: Task)
     func start(task: Task)
