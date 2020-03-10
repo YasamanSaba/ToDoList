@@ -26,4 +26,5 @@ protocol TaskServiceType {
     func pause(task: Task) throws
     func finish(task: Task)
     func reset(task: Task)
+    func setPassedTime(task: Task, passedTime: Int16)
 }

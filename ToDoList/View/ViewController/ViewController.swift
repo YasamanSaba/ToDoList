@@ -33,11 +33,11 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
         let task = Task(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
         task.title = "Do Sport"
-        task.duration = 142
+        task.duration = 3
         task.stateEnum = .initiated
-        task.passedTime = 70
+        task.passedTime = 0
         task.desc = "dfgjhadjfhiahfigailgfliageiorgygeahgljkvlhgfkuygaifhglasdgfukgsLIGdfgjhadjfhiahfigailgfliageiorgygeahgljkvlhgfkuygaifhglasdgfukgsLIG"
-        cell.configure(task: task)
+        cell.configure(task: task, taskService: TaskService())
         return cell
     }
     

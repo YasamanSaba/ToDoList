@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 struct TaskService: TaskServiceType {
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -87,4 +88,8 @@ struct TaskService: TaskServiceType {
         self.appDelegate.saveContext()
     }
     
+    func setPassedTime(task: Task, passedTime: Int16) {
+        task.passedTime = passedTime
+        self.appDelegate.saveContext()
+    }
 }
