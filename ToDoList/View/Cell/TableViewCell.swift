@@ -160,7 +160,7 @@ class TableViewCell: UITableViewCell {
             self.taskService.start(task: self.task)
             self.stateImage.image = UIImage(systemName: "pause.fill")
             
-            self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
+            self.timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { timer in
                 let currentTime = self.task.passedTime + 1
                 if currentTime == self.task.duration {
                     self.taskService.finish(task: self.task)
@@ -197,5 +197,4 @@ class TableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-    
 }
