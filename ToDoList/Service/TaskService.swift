@@ -10,11 +10,11 @@ import UIKit
 import CoreData
 
 struct TaskService: TaskServiceType {
-    
+
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func create(task: Task, day: Day) throws {
+    func createTask(title: String, desc: String?, duration: Int16, day: Day) throws {
         let request = NSFetchRequest<NSNumber>(entityName: "Task")
         request.resultType = .countResultType
         var count = 0
@@ -28,10 +28,10 @@ struct TaskService: TaskServiceType {
         
         let tempTask = Task(context: self.context)
         tempTask.id = Int32(count + 1)
-        tempTask.title = task.title
-        tempTask.desc = task.desc
+        tempTask.title = title
+        tempTask.desc = desc
         tempTask.stateEnum = .initiated
-        tempTask.duration = task.duration
+        tempTask.duration = duration
         tempTask.passedTime = 0
         tempTask.day = day
         self.appDelegate.saveContext()
@@ -91,5 +91,17 @@ struct TaskService: TaskServiceType {
     func setPassedTime(task: Task, passedTime: Int16) {
         task.passedTime = passedTime
         self.appDelegate.saveContext()
+    }
+    
+    func tasks(in day: Day) -> NSFetchedResultsController<Task> {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        let sort = NSSortDescriptor(key: #keyPath(Task.id), ascending: true)
+        request.sortDescriptors = [sort]
+        let dayPredicate = NSPredicate(format: "%K == %@", #keyPath(Task.day), day)
+        request.predicate = dayPredicate
+        return NSFetchedResultsController(fetchRequest: request,
+                                          managedObjectContext: self.context,
+                                          sectionNameKeyPath: nil,
+                                          cacheName: nil)
     }
 }

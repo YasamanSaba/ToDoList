@@ -35,8 +35,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let timeElapsed = Int16((Date().timeIntervalSinceReferenceDate - lastRun.timeIntervalSinceReferenceDate) / 60)
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
+            let taskCountRequest = NSFetchRequest<NSNumber>(entityName: "Task")
+            taskCountRequest.resultType = .countResultType
+            var count = 0
+            do {
+                count = try context.fetch(taskCountRequest).first!.intValue
+            } catch {
+                print(error)
+            }
+            guard count != 0 else{
+                return
+            }
             let taskRequest: NSFetchRequest<Task> = Task.fetchRequest()
-            let statePredicate = NSPredicate(format: "%K == %@", #keyPath(Task.state), 1)
+            let statePredicate = NSPredicate(format: "%K == %i", #keyPath(Task.state), 1)
             taskRequest.predicate = statePredicate
             do {
              let tasks = try context.fetch(taskRequest) as [Task]

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum TaskServiceError: Error {
     case creationFailed
@@ -19,7 +20,7 @@ enum TaskServiceError: Error {
 }
 
 protocol TaskServiceType {
-    func create(task: Task, day: Day) throws
+    func createTask(title: String, desc: String?, duration: Int16, day: Day) throws
     func edit(task: Task, title: String?, desc: String?, duration: Int?)
     func delete(task: Task)
     func start(task: Task)
@@ -27,4 +28,5 @@ protocol TaskServiceType {
     func finish(task: Task)
     func reset(task: Task)
     func setPassedTime(task: Task, passedTime: Int16)
+    func tasks(in day: Day) -> NSFetchedResultsController<Task>
 }

@@ -119,6 +119,15 @@ class TableViewCell: UITableViewCell {
             mainStack.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             mainStack.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
+        
+        if task.stateEnum == .inProgress {
+            do {
+                try self.taskService.pause(task: self.task)
+                playPause()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     @objc func reset() {
@@ -159,19 +168,25 @@ class TableViewCell: UITableViewCell {
         case .initiated, .paused:
             self.taskService.start(task: self.task)
             self.stateImage.image = UIImage(systemName: "pause.fill")
-            
-            self.timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { timer in
-                let currentTime = self.task.passedTime + 1
-                if currentTime == self.task.duration {
-                    self.taskService.finish(task: self.task)
-                    self.stateImage.isHidden = true
-                    self.resetBtn.isHidden = true
-                    timer.invalidate()
-                } else {
-                    self.taskService.setPassedTime(task: self.task, passedTime: currentTime)
+            if self.task.passedTime >= self.task.duration {
+                self.taskService.finish(task: self.task)
+                self.stateImage.isHidden = true
+                self.resetBtn.isHidden = true
+            } else {
+                self.timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { timer in
+                    let currentTime = self.task.passedTime + 1
+                    if currentTime >= self.task.duration {
+                        self.taskService.finish(task: self.task)
+                        self.stateImage.isHidden = true
+                        self.resetBtn.isHidden = true
+                        timer.invalidate()
+                    } else {
+                        self.taskService.setPassedTime(task: self.task, passedTime: currentTime)
+                    }
+                    self.progressBar.setProgress(Float(self.task.passedTime) / Float(self.task.duration), animated: true)
                 }
-                self.progressBar.setProgress(Float(self.task.passedTime) / Float(self.task.duration), animated: true)
             }
+            self.progressBar.setProgress(Float(self.task.passedTime) / Float(self.task.duration), animated: true)
             
         case .inProgress:
             do {
