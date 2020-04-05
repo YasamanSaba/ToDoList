@@ -11,39 +11,32 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
     let taskService = TaskService()
     let dayService = DayService()
     var resultController: NSFetchedResultsController<Task>!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
-        let dayRequest: NSFetchRequest<Day> = Day.fetchRequest()
-        let day = try! self.context.fetch(dayRequest).first!
-        self.resultController = self.taskService.tasks(in: day)
-        try! self.resultController.performFetch()
-        self.tableView.dataSource = self
+
+        self.collectionView.dataSource = self
     }
     
 }
 
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionInfo = self.resultController.sections?.first else {
-            return 0
-        }
-        return sectionInfo.numberOfObjects
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
-        let task = self.resultController.object(at: indexPath)
-        cell.configure(task: task, taskService: self.taskService)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        cell.configure()
         return cell
     }
+    
     
     
 }
