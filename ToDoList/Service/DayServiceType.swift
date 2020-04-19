@@ -11,12 +11,12 @@ import CoreData
 
 enum DayServiceError: Error {
     case addFailed
-    case dayAlreadyExist
+    case dayAlreadyExists
     case fetchDaysFailed
 }
 
 protocol DayServiceType {
-    func add(day: Day) throws
+    func add(date: Date, goalTime: Int) throws
     func update(day: Day, goalTime: Int)
     func delete(day: Day)
     func days() -> NSFetchedResultsController<Day>

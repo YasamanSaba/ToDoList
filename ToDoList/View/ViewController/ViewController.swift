@@ -12,7 +12,6 @@ import CoreData
 class ViewController: UIViewController {
     
     let taskService = TaskService()
-    let dayService = DayService()
     var resultController: NSFetchedResultsController<Task>!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var collectionView: UICollectionView!
@@ -33,7 +32,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.configure()
+        cell.configure(date: Date())
         return cell
     }
     

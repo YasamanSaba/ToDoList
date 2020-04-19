@@ -10,17 +10,18 @@ import UIKit
 import CoreData
 
 struct DayService: DayServiceType {
+    
+    private init() {}
+    
+    static let shared = DayService()
         
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func add(day: Day) throws{
-        guard let currentDate = day.date else {
-            throw DayServiceError.addFailed
-        }
+    func add(date: Date, goalTime: Int) throws{
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-        let newDate = calendar.startOfDay(for: currentDate)
+        let newDate = calendar.startOfDay(for: date)
         let dayRequest = NSFetchRequest<NSNumber>(entityName: "Day")
         dayRequest.resultType = .countResultType
         let dayPredicate = NSPredicate(format: "%K == %@", #keyPath(Day.date), newDate as NSDate)
@@ -33,11 +34,11 @@ struct DayService: DayServiceType {
             throw DayServiceError.addFailed
         }
         guard count != 0 else {
-            throw DayServiceError.dayAlreadyExist
+            throw DayServiceError.dayAlreadyExists
         }
         let newDay = Day(context: self.context)
         newDay.date = newDate
-        newDay.goalTime = day.goalTime
+        newDay.goalTime = Int16(goalTime)
         self.appDelegate.saveContext()
     }
     

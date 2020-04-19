@@ -29,7 +29,8 @@ class CollectionViewCell: UICollectionViewCell {
     private var binBtn: UIImageView!
     private var addTaskBtn: UIButton!
     
-    private var day: Day!
+    private var day: Day?
+    private var currentDate: Date!
     private var dayService: DayServiceType!
     
     private var mainStack: UIStackView!
@@ -101,13 +102,15 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     /// It puts UI elements in the `CollectionViewCell`
-    func configure() {
+    func configure(date:Date ,day: Day? = nil) {
         
-        //self.day = day
-        //self.dayService = dayService
+        self.day = day
+        self.currentDate = date
         
         self.dateLbl = UILabel()
-        self.dateLbl.text = "12 March"
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "d LLL"
+        self.dateLbl.text = dateFormater.string(from: date)
         self.dateLbl.font = UIFont.preferredFont(forTextStyle: .title1)
         self.dateLbl.textColor = .systemPink
         self.dateLbl.minimumScaleFactor = 0.4
@@ -119,7 +122,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         self.goalViewCreate = UIView()
         self.goalViewCreate.translatesAutoresizingMaskIntoConstraints = false
-        self.goalViewCreate.isHidden = true
+        //self.goalViewCreate.isHidden = true
         
         self.goalViewShow = UIView()
         //self.goalViewShow.backgroundColor = .systemRed
@@ -130,11 +133,10 @@ class CollectionViewCell: UICollectionViewCell {
         
         self.goalViewDatePicker = UIView()
         self.goalViewDatePicker.translatesAutoresizingMaskIntoConstraints = false
-        //self.goalViewDatePicker.isHidden = true
+        self.goalViewDatePicker.isHidden = true
         
         self.datePicker = UIDatePicker()
         self.datePicker.datePickerMode = .countDownTimer
-        self.datePicker.addTarget(self, action: #selector(handler), for: UIControl.Event.valueChanged)
         
         self.datePickerTxt = UITextField()
         self.datePickerTxt.placeholder = "Add your goal time "
@@ -257,7 +259,23 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     @objc func doneClick() {
-        
+        let goalTime = Int(self.datePicker.countDownDuration / 60)
+        do {
+            try DayService.shared.add(date: self.currentDate, goalTime: goalTime)
+            let hours = goalTime / 60
+            let mins = goalTime % 60
+            self.hoursGoalLbl.text = "\(hours) hours \(mins) min"
+            self.datePickerTxt.resignFirstResponder()
+            UIView.transition(from: self.goalViewDatePicker,
+                                     to: self.goalViewShow,
+                                     duration: 0.5,
+                                     options: [.transitionFlipFromBottom, .showHideTransitionViews],
+                                     completion: nil)
+        } catch DayServiceError.dayAlreadyExists {
+            print("Day already exists")
+        } catch {
+            print("Couldn't create a day \(error)")
+        }
     }
     
     @objc func cancelClick() {
@@ -267,15 +285,5 @@ class CollectionViewCell: UICollectionViewCell {
                           duration: 0.5,
                           options: [.transitionFlipFromBottom, .showHideTransitionViews],
                           completion: nil)
-    }
-    
-    @objc func handler(sender: UIDatePicker) {
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        let strDate = timeFormatter.string(from: datePicker.date)
-        self.datePickerTxt.text = strDate
-        self.datePickerTxt.textAlignment = .center
-        self.datePickerTxt.font = UIFont.preferredFont(forTextStyle: .title1)
-        self.datePickerTxt.borderStyle = .roundedRect
     }
 }
