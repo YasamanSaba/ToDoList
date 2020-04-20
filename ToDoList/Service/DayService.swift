@@ -33,7 +33,7 @@ struct DayService: DayServiceType {
             print("Could not fetch \(error), \(error.userInfo)")
             throw DayServiceError.addFailed
         }
-        guard count != 0 else {
+        guard count == 0 else {
             throw DayServiceError.dayAlreadyExists
         }
         let newDay = Day(context: self.context)

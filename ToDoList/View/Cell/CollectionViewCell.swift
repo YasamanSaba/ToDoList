@@ -27,7 +27,6 @@ class CollectionViewCell: UICollectionViewCell {
     private var progressLbl: UILabel!
     private var percentageLbl: UILabel!
     private var binBtn: UIImageView!
-    private var addTaskBtn: UIButton!
     
     private var day: Day?
     private var currentDate: Date!
@@ -117,15 +116,12 @@ class CollectionViewCell: UICollectionViewCell {
         self.dateLbl.translatesAutoresizingMaskIntoConstraints = false
         
         self.goalView = UIView()
-        //self.goalView.backgroundColor = .systemBlue
         self.goalView.translatesAutoresizingMaskIntoConstraints = false
         
         self.goalViewCreate = UIView()
         self.goalViewCreate.translatesAutoresizingMaskIntoConstraints = false
-        //self.goalViewCreate.isHidden = true
         
         self.goalViewShow = UIView()
-        //self.goalViewShow.backgroundColor = .systemRed
         self.goalViewShow.layer.borderWidth = 1.0
         self.goalViewShow.layer.borderColor = UIColor.systemGray5.cgColor
         self.goalViewShow.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +129,6 @@ class CollectionViewCell: UICollectionViewCell {
         
         self.goalViewDatePicker = UIView()
         self.goalViewDatePicker.translatesAutoresizingMaskIntoConstraints = false
-        self.goalViewDatePicker.isHidden = true
         
         self.datePicker = UIDatePicker()
         self.datePicker.datePickerMode = .countDownTimer
@@ -182,7 +177,6 @@ class CollectionViewCell: UICollectionViewCell {
         self.goalEdit.translatesAutoresizingMaskIntoConstraints = false
         
         self.hoursGoalLbl = UILabel()
-        self.hoursGoalLbl.text = "2 hour 45 min"
         self.hoursGoalLbl.font = UIFont.preferredFont(forTextStyle: .body)
         self.hoursGoalLbl.minimumScaleFactor = 0.4
         self.hoursGoalLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -201,7 +195,6 @@ class CollectionViewCell: UICollectionViewCell {
         self.progressLbl.translatesAutoresizingMaskIntoConstraints = false
         
         self.percentageLbl = UILabel()
-        self.percentageLbl.text = "35%"
         self.percentageLbl.font = UIFont.preferredFont(forTextStyle: .body)
         self.percentageLbl.textColor = .systemGreen
         self.percentageLbl.minimumScaleFactor = 0.4
@@ -214,13 +207,6 @@ class CollectionViewCell: UICollectionViewCell {
         self.binBtn.isUserInteractionEnabled = true
         self.binBtn.addGestureRecognizer(tapGestureRecognizer)
         self.binBtn.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addTaskBtn = UIButton()
-        self.addTaskBtn.setTitle("Add Task", for: .normal)
-        self.addTaskBtn.setTitleColor(.link, for: .normal)
-        self.addTaskBtn.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        self.addTaskBtn.addTarget(self, action: #selector(addTask), for: .touchUpInside)
-        self.addTaskBtn.translatesAutoresizingMaskIntoConstraints = false
         
         let progressStack = UIStackView(arrangedSubviews: [self.timerImage, self.progressLbl, self.percentageLbl])
         progressStack.axis = .horizontal
@@ -235,6 +221,19 @@ class CollectionViewCell: UICollectionViewCell {
         mainStack.spacing = 7.0
         mainStack.alignment = .center
         mainStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        if let day = day {
+            self.goalViewCreate.isHidden = true
+            self.goalViewDatePicker.isHidden = true
+            self.goalViewShow.isHidden = false
+            self.hoursGoalLbl.text = "\(day.goalTime / 60) hours \(day.goalTime % 60) mins"
+            self.percentageLbl.text = "\(day.progress)%"
+        } else {
+            self.goalViewCreate.isHidden = false
+            self.goalViewDatePicker.isHidden = true
+            self.goalViewShow.isHidden = true
+            self.percentageLbl.text = "0%"
+        }
         
         addSubviews()
         
@@ -251,11 +250,23 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     @objc func deleteDay() {
-        
-    }
-    
-    @objc func addTask() {
-        
+        guard let day = self.day else {
+            return
+        }
+        let alertController = UIAlertController(title: "Warning", message: "Are you sure to delete this day?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { [unowned self] action in
+            DayService.shared.delete(day: day)
+            UIView.transition(from: self.goalViewShow,
+                              to: self.goalViewCreate,
+                              duration: 0.5,
+                              options: [.transitionFlipFromTop, .showHideTransitionViews],
+                              completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        let rootViewController = UIApplication.shared.connectedScenes.filter { $0.activationState == .foregroundActive }.map { $0 as? UIWindowScene }.compactMap{$0}.first?.windows.filter{$0.isKeyWindow}.first?.rootViewController
+        rootViewController?.present(alertController, animated: true)
     }
     
     @objc func doneClick() {
